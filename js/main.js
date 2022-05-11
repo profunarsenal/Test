@@ -9,7 +9,7 @@ const btnCheckboxMore = document.querySelector('.checkbox__btn-more');
 const cardsBlock = document.querySelector('.cards');
 const radioBtns = document.querySelectorAll('.radio__btn-hide');
 
-const filter = (cards, data) => {
+const filterLocation = (cards, data) => {
   if (data[0] === 'Любая') {
     render(cards)
   } else {
@@ -102,7 +102,7 @@ form.addEventListener('reset', () => {
 
 form.addEventListener('submit', (e) => {
   const locationCheckboxArray = [];
-  let radioBtnText;
+  let radioBtnChecked;
 
   locationCheckboxesFilter.forEach(checkbox => {
     if (checkbox.checked) {
@@ -110,7 +110,11 @@ form.addEventListener('submit', (e) => {
     }
   })
 
-  getData().then(data => filter(data, locationCheckboxArray, radioBtnText));
+  radioBtns.forEach(radio => {
+    radioBtnChecked = radio.nextElementSibling.textContent;
+  })
+
+  getData().then(data => filterLocation(data, locationCheckboxArray));
 
   e.preventDefault();
 })
