@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Тестовое задание</title>
+  <!-- css -->
+  <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- js -->
+  <script src="./js/main.js" defer></script>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="wrapper">
+
+      <main class="main">
+        <div class="cards">
+        </div>
+
+        <button class="btn-more" type="button">
+          <img class="btn-more__icon" src="./images/icons/plus-circle.svg" alt="icon more">
+          <span class="btn-more__text">Показать еще</span>
+        </button>
+      </main>
+
+      <button class="sidebar-button sidebar-button--open">
+        <img src="images/icons/menu.svg" alt="burger">
+      </button>
+
+      <aside class="sidebar">
+        <button class="sidebar-button sidebar-button--close">
+          <img src="images/icons/x.svg" alt="burger-close">
+        </button>
+
+        <form class="form">
+          <div class="widget">
+            <div class="widget__title">Близость к метро</div>
+            <div class="widget__body">
+
+              <div class="location">
+                <div class="location__row">
+                  <input class="location__checkbox location__checkbox--distance" type="checkbox" id="location-01">
+                  <label class="location__btn" for="location-01">&lt; 10</label>
+
+                  <input class="location__checkbox location__checkbox--distance" type="checkbox" id="location-02">
+                  <label class="location__btn" for="location-02">10-20</label>
+
+                  <input class="location__checkbox location__checkbox--distance" type="checkbox" id="location-03">
+                  <label class="location__btn" for="location-03">20-30</label>
+
+                  <input class="location__checkbox location__checkbox--distance" type="checkbox" id="location-04">
+                  <label class="location__btn" for="location-04">30+</label>
+                </div>
+                <div class="location__row">
+                  <input class="location__checkbox location__checkbox--all" type="checkbox" id="location-05" checked>
+                  <label class="location__btn" for="location-05">Любая</label>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="widget">
+            <div class="widget__title">Срок сдачи</div>
+            <div class="widget__body">
+
+              <label class="radio">
+                <input class="radio__btn-hide" type="radio" name="term" checked>
+                <span class="radio__btn">Любая</span>
+              </label>
+
+              <label class="radio">
+                <input class="radio__btn-hide" type="radio" name="term">
+                <span class="radio__btn">Сдан</span>
+              </label>
+
+              <label class="radio">
+                <input class="radio__btn-hide" type="radio" name="term">
+                <span class="radio__btn">В этом году</span>
+              </label>
+
+              <label class="radio">
+                <input class="radio__btn-hide" type="radio" name="term">
+                <span class="radio__btn">В следующем году</span>
+              </label>
+
+            </div>
+          </div>
+
+          <div class="widget">
+            <div class="widget__title">Дополнительные опции</div>
+            <div class="widget__body">
+
+              <label class="checkbox">
+                <input class="checkbox__btn-hide" type="checkbox">
+                <span class="checkbox__btn">Двор без машин</span>
+              </label>
+
+              <label class="checkbox">
+                <input class="checkbox__btn-hide" type="checkbox">
+                <span class="checkbox__btn">Высокие потолки</span>
+              </label>
+
+              <label class="checkbox">
+                <input class="checkbox__btn-hide" type="checkbox">
+                <span class="checkbox__btn">Панорамные окна</span>
+              </label>
+
+              <label class="checkbox">
+                <input class="checkbox__btn-hide" type="checkbox">
+                <span class="checkbox__btn">Есть кладовые</span>
+              </label>
+
+              <label class="checkbox">
+                <input class="checkbox__btn-hide" type="checkbox">
+                <span class="checkbox__btn">Малоэтажный</span>
+              </label>
+
+              <label class="checkbox checkbox__hidden" style="display: none;">
+                <input class="checkbox__btn-hide" type="checkbox">
+                <span class="checkbox__btn">Студия</span>
+              </label>
+
+              <label class="checkbox checkbox__hidden" style="display: none;">
+                <input class="checkbox__btn-hide" type="checkbox">
+                <span class="checkbox__btn">Вид на Волгу</span>
+              </label>
+
+              <label class="checkbox checkbox__hidden" style="display: none;">
+                <input class="checkbox__btn-hide" type="checkbox">
+                <span class="checkbox__btn">Черновая</span>
+              </label>
+
+              <button class="checkbox__btn-more" type="button">Показать ещё</button>
+
+            </div>
+          </div>
+
+          <div class="widget">
+            <div class="widget__body">
+
+              <label class="services">
+                <input class="services__btn-hide" type="checkbox">
+                <span class="services__btn-toggle">Услуги 0%</span>
+              </label>
+
+            </div>
+          </div>
+
+          <div class="form__btn-group">
+            <button class="form__btn form__btn--submit" type="submit">Применить фильтры</button>
+            <button class="form__btn form__btn--reset" type="reset">
+              <img class="form__btn-icon" src="./images/icons/x.svg" alt="reset icon">
+              <span>Сбросить фильтры</span>
+            </button>
+          </div>
+        </form>
+
+      </aside>
+
+    </div>
+  </div>
+
+</body>
+
+</html>

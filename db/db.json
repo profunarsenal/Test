@@ -1,0 +1,98 @@
+[
+  {
+    "name": "ЖК Акварель",
+    "metro": "Российская",
+    "term": "В этом году",
+    "address": "5-просека",
+    "image": "./images/content/akvarel.jpg",
+    "distance": "< 10"
+  },
+  {
+    "name": "River House",
+    "metro": "Алабинская",
+    "term": "В следующем году",
+    "address": "Большая Караванная ул.",
+    "image": "./images/content/river-house.jpg",
+    "distance": "30+"
+  },
+  {
+    "name": "ЖК Амград",
+    "metro": "Гагаринская",
+    "term": "В этом году",
+    "address": "Южное шоссе",
+    "image": "./images/content/amgrad.jpg",
+    "distance": "30+"
+  },
+  {
+    "name": "ЖК Капитал",
+    "metro": "Спортивная",
+    "term": "Сдан",
+    "address": "Санфировой ул.",
+    "image": "./images/content/capital.jpg",
+    "distance": "< 10"
+  },
+  {
+    "name": "ЖК Две Реки",
+    "metro": "Алабинская",
+    "term": "В следующем году",
+    "address": "Белорусская ул.",
+    "image": "./images/content/dve-reki.jpg",
+    "distance": "10-20"
+  },
+  {
+    "name": "ЖК Новая Самара",
+    "metro": "Юнгородок",
+    "term": "Сдан",
+    "address": "Мехзавод 1-й квартал",
+    "image": "./images/content/new-samara.jpeg",
+    "distance": "20-30"
+  },
+  {
+    "name": "ЖК Панова Парк",
+    "metro": "Российская",
+    "term": "В этом году",
+    "address": "Николая Панова ул.",
+    "image": "./images/content/panova-park.jpg",
+    "distance": "10-20"
+  },
+  {
+    "name": "ЖК Волжские Паруса",
+    "metro": "Российская",
+    "term": "В этом году",
+    "address": "Лейтенанта Шмидта ул.",
+    "image": "./images/content/parusa.jpg",
+    "distance": "10-20"
+  },
+  {
+    "name": "ЖК Рассвет",
+    "metro": "Юнгородок",
+    "term": "Сдан",
+    "address": "Московское шоссе",
+    "image": "./images/content/rassvet.jpg",
+    "distance": "30+"
+  },
+  {
+    "name": "ЖК Волга",
+    "metro": "Российская",
+    "term": "В следующем году",
+    "address": "Иволга",
+    "image": "./images/content/volga.jpeg",
+    "distance": "20-30"
+  },
+  {
+    "name": "ЖК Волжские Огни",
+    "metro": "Российская",
+    "term": "Сдан",
+    "address": "Октябрьский",
+    "image": "./images/content/volzhskie-ogni.jpeg",
+    "distance": "< 10"
+  },
+  {
+    "name": "ЖК Рекорд",
+    "metro": "Безымянка",
+    "term": "Сдан",
+    "address": "Физкультурная ул.",
+    "image": "./images/content/rekord.jpeg",
+    "distance": "< 10"
+  }
+]
