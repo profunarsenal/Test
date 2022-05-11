@@ -56,7 +56,7 @@ const render = (cards) => {
 }
 
 const getData = () => {
-  return fetch('../db/db.json')
+  return fetch('https://api.jsonbin.io/b/627be88d25069545a3329db2')
     .then(res => res.json())
 }
 
