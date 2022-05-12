@@ -1,5 +1,4 @@
 const sidebar = document.querySelector('.sidebar');
-const locationCheckboxesFilter = document.querySelectorAll('.location__checkbox');
 const locationCheckbox = document.querySelector('.location__checkbox--all');
 const locationCheckboxes = document.querySelectorAll('.location__checkbox--distance');
 const btnWidgets = document.querySelectorAll('.widget__title');
@@ -7,56 +6,106 @@ const form = document.querySelector('.form');
 const checkboxes = document.querySelectorAll('.checkbox__hidden');
 const btnCheckboxMore = document.querySelector('.checkbox__btn-more');
 const cardsBlock = document.querySelector('.cards');
-const radioBtns = document.querySelectorAll('.radio__btn-hide');
 
-const filterLocation = (cards, data) => {
-  if (data[0] === 'Любая') {
+const optionsFilter = (cards) => {
+  const options = Array.from(document.querySelectorAll('.checkbox__btn-hide'));
+  const optionsActive = options.filter(option => option.checked ? option : undefined);
+  const cardArray = [];
+
+  if (optionsActive.length === 0) {
     render(cards)
   } else {
-    const filterArray = [];
-
-    cards.forEach(card => {
-      data.forEach(value => {
-        if (card.distance === value) {
-          filterArray.push(card);
+    optionsActive.forEach(option => {
+      cards.forEach(card => {
+        if (card[option.value] === true) {
+          cardArray.push(card)
         }
       })
     })
-
-    render(filterArray)
+    render(cardArray)
   }
+
+}
+
+const radioFilter = (cards) => {
+  const radioBtns = Array.from(document.querySelectorAll('.radio__btn-hide'));
+  const radioBtnActive = radioBtns.filter(radio => radio.checked ? radio : undefined);
+  const cardArray = [];
+
+  if (radioBtnActive[0].value === 'Любая') {
+    optionsFilter(cards);
+  } else {
+    cards.forEach(card => {
+      if (card.term === radioBtnActive[0].value) {
+        cardArray.push(card);
+      }
+    })
+
+    optionsFilter(cardArray);
+  }
+}
+
+
+const filterLocation = (cards) => {
+  const checkboxValues = Array.from(document.querySelectorAll('.location__checkbox'));
+  const checkboxActive = checkboxValues.filter(checkbox => checkbox.checked ? checkbox : undefined);
+  const cardArray = [];
+
+  checkboxActive.forEach(checkbox => {
+    if (checkbox.value === 'Любая') {
+      radioFilter(cards)
+    } else {
+      cards.forEach(card => {
+        if (card.distance === checkbox.value) {
+          cardArray.push(card)
+        }
+      })
+
+      console.log(cardArray)
+      radioFilter(cardArray)
+    }
+  })
+
 }
 
 const render = (cards) => {
   cardsBlock.innerHTML = '';
 
-  cards.forEach(card => {
-    const a = document.createElement('a');
-    a.classList.add('card');
-    a.href = '#';
+  if (cards.length === 0) {
+    const message = document.createElement('div');
+    message.classList.add('message');
+    message.textContent = 'Подходящих объявлений не найдено'
+    cardsBlock.append(message)
+  } else {
+    cards.forEach(card => {
+      const a = document.createElement('a');
+      a.classList.add('card');
+      a.href = '#';
 
-    a.innerHTML = `
-    <div class="card__header">
-      <div class="card__sticker card__sticker--class">Комфорт</div>
-        <div class="card__sticker card__sticker--credit">Рассрочка 12 мес.</div>
-      </div>
-      <div class="card__image">
-        <img src="${card.image}" alt="">
-      </div>
-      <div class="card__content">
-        <h4 class="card__title">${card.name}</h4>
-        <div class="card__term">${card.term}</div>
-        <div class="card__metro">${card.metro}</div>
-        <div class="card__address">${card.address}</div>
-      </div>
-    `;
+      a.innerHTML = `
+      <div class="card__header">
+        <div class="card__sticker card__sticker--class">Комфорт</div>
+          <div class="card__sticker card__sticker--credit">Рассрочка 12 мес.</div>
+        </div>
+        <div class="card__image">
+          <img src="${card.image}" alt="">
+        </div>
+        <div class="card__content">
+          <h4 class="card__title">${card.name}</h4>
+          <div class="card__term">${card.term}</div>
+          <div class="card__metro">${card.metro}</div>
+          <div class="card__address">${card.address}</div>
+        </div>
+      `;
 
-    cardsBlock.append(a)
-  })
+      cardsBlock.append(a)
+    })
+  }
+
 }
 
 const getData = () => {
-  return fetch('https://api.jsonbin.io/b/627be88d25069545a3329db2')
+  return fetch('https://api.jsonbin.io/b/627be88d25069545a3329db2/1')
     .then(res => res.json())
 }
 
@@ -101,21 +150,7 @@ form.addEventListener('reset', () => {
 })
 
 form.addEventListener('submit', (e) => {
-  const locationCheckboxArray = [];
-  let radioBtnChecked;
-
-  locationCheckboxesFilter.forEach(checkbox => {
-    if (checkbox.checked) {
-      locationCheckboxArray.push(checkbox.nextElementSibling.textContent)
-    }
-  })
-
-  radioBtns.forEach(radio => {
-    radioBtnChecked = radio.nextElementSibling.textContent;
-  })
-
-  getData().then(data => filterLocation(data, locationCheckboxArray));
-
+  getData().then(data => filterLocation(data));
   e.preventDefault();
 })
 

@@ -5,7 +5,9 @@
     "term": "В этом году",
     "address": "5-просека",
     "image": "./images/content/akvarel.jpg",
-    "distance": "< 10"
+    "distance": "< 10",
+    "noCar": false,
+    "ceiling": true
   },
   {
     "name": "River House",
@@ -13,7 +15,9 @@
     "term": "В следующем году",
     "address": "Большая Караванная ул.",
     "image": "./images/content/river-house.jpg",
-    "distance": "30+"
+    "distance": "30+",
+    "noCar": false,
+    "ceiling": true
   },
   {
     "name": "ЖК Амград",
@@ -21,7 +25,9 @@
     "term": "В этом году",
     "address": "Южное шоссе",
     "image": "./images/content/amgrad.jpg",
-    "distance": "30+"
+    "distance": "30+",
+    "noCar": true,
+    "ceiling": true
   },
   {
     "name": "ЖК Капитал",
@@ -29,7 +35,9 @@
     "term": "Сдан",
     "address": "Санфировой ул.",
     "image": "./images/content/capital.jpg",
-    "distance": "< 10"
+    "distance": "< 10",
+    "noCar": false,
+    "ceiling": true
   },
   {
     "name": "ЖК Две Реки",
@@ -37,7 +45,9 @@
     "term": "В следующем году",
     "address": "Белорусская ул.",
     "image": "./images/content/dve-reki.jpg",
-    "distance": "10-20"
+    "distance": "10-20",
+    "noCar": true,
+    "ceiling": true
   },
   {
     "name": "ЖК Новая Самара",
@@ -45,7 +55,9 @@
     "term": "Сдан",
     "address": "Мехзавод 1-й квартал",
     "image": "./images/content/new-samara.jpeg",
-    "distance": "20-30"
+    "distance": "20-30",
+    "noCar": false,
+    "ceiling": true
   },
   {
     "name": "ЖК Панова Парк",
@@ -53,7 +65,9 @@
     "term": "В этом году",
     "address": "Николая Панова ул.",
     "image": "./images/content/panova-park.jpg",
-    "distance": "10-20"
+    "distance": "10-20",
+    "noCar": true,
+    "ceiling": true
   },
   {
     "name": "ЖК Волжские Паруса",
@@ -61,7 +75,9 @@
     "term": "В этом году",
     "address": "Лейтенанта Шмидта ул.",
     "image": "./images/content/parusa.jpg",
-    "distance": "10-20"
+    "distance": "10-20",
+    "noCar": true,
+    "ceiling": true
   },
   {
     "name": "ЖК Рассвет",
@@ -69,7 +85,9 @@
     "term": "Сдан",
     "address": "Московское шоссе",
     "image": "./images/content/rassvet.jpg",
-    "distance": "30+"
+    "distance": "30+",
+    "noCar": false,
+    "ceiling": true
   },
   {
     "name": "ЖК Волга",
@@ -77,7 +95,9 @@
     "term": "В следующем году",
     "address": "Иволга",
     "image": "./images/content/volga.jpeg",
-    "distance": "20-30"
+    "distance": "20-30",
+    "noCar": true,
+    "ceiling": true
   },
   {
     "name": "ЖК Волжские Огни",
@@ -85,7 +105,9 @@
     "term": "Сдан",
     "address": "Октябрьский",
     "image": "./images/content/volzhskie-ogni.jpeg",
-    "distance": "< 10"
+    "distance": "< 10",
+    "noCar": true,
+    "ceiling": true
   },
   {
     "name": "ЖК Рекорд",
@@ -93,6 +115,8 @@
     "term": "Сдан",
     "address": "Физкультурная ул.",
     "image": "./images/content/rekord.jpeg",
-    "distance": "< 10"
+    "distance": "< 10",
+    "noCar": false,
+    "ceiling": true
   }
 ]
