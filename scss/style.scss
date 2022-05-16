@@ -1,11 +1,19 @@
 /* base style */
 
+html {
+  overflow-y: scroll;
+}
+
 body {
   min-width: 320px;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   color: #000;
   background-color: #F4F4F4;
+
+  &.lock {
+    overflow: hidden;
+  }
 }
 
 .container {
@@ -232,6 +240,7 @@ body {
   border-radius: 4px;
   background-color: #E5E5E5;
   transition: background-color 0.5s ease;
+  display: none;
 
   @media(any-hover:hover) {
     &:hover {
@@ -517,9 +526,9 @@ body {
 }
 
 
-/* services */
+/* credit */
 
-.services {
+.credit {
   display: block;
 
   &__btn-hide {
@@ -530,7 +539,7 @@ body {
     opacity: 0;
     appearance: none;
 
-    &:checked+.services__btn-toggle {
+    &:checked+.credit__btn-toggle {
       font-weight: 500;
 
       &::before {
@@ -635,6 +644,184 @@ body {
   }
 
 }
+
+/* modal */
+
+.modal {
+  position: fixed;
+  z-index: 99;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba($color: #000000, $alpha: .5);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: 0.5s ease;
+
+  &__content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 1000px;
+    height: 440px;
+    padding: 20px;
+    background-color: #F4F4F4;
+    border-radius: 2px;
+    transform: translateY(-100%);
+    transition: 0.5s ease;
+
+    @media(max-width: 1030px) {
+      width: 800px;
+    }
+
+    @media(max-width: 839px) {
+      display: block;
+      width: 90%;
+      height: 90%;
+      overflow: auto;
+    }
+  }
+
+  &__close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    @media(max-width: 839px) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__image {
+    flex: 0 1 50%;
+
+    img {
+      width: 100%;
+      height: 380px;
+      border-radius: 2px;
+      object-fit: cover;
+    }
+
+    @media(max-width: 839px) {
+      text-align: center;
+
+      img {
+        width: 95%;
+        height: 300px;
+        object-fit: cover;
+      }
+    }
+
+    @media(max-width: 500px) {
+      img {
+        height: 200px;
+      }
+    }
+
+  }
+
+  &__info {
+    flex: 1 1 auto;
+    margin-left: 20px;
+
+    @media(max-width: 839px) {
+      margin-left: 0;
+      margin-top: 15px;
+    }
+  }
+
+
+  &__title {
+    margin-bottom: 15px;
+    font-size: 22px;
+    text-align: center;
+
+    span {
+      color: green;
+    }
+
+    @media(max-width: 1030.98px) {
+      font-size: 18px;
+    }
+
+  }
+
+  &__info-list {}
+
+  &__info-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+
+    @media(max-width: 1030.98px) {
+      font-size: 14px;
+    }
+  }
+
+  &__info-item:not(:last-child) {
+    padding-bottom: 6px;
+    margin-bottom: 7px;
+    border-bottom: 1px dashed #777777;
+  }
+
+  &__info-subtitle {
+    color: #777777;
+  }
+
+  &__info-value {
+    color: #0f0f0f;
+  }
+
+  &__info-value--metro {
+    position: relative;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 11px;
+      margin-right: 10px;
+      background-image: url(../images/icons/metro.svg);
+      background-repeat: no-repeat;
+    }
+  }
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+  }
+
+  &.active>.modal__content {
+    transform: translateY(0);
+  }
+
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 
 /* message */
 

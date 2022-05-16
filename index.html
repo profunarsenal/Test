@@ -122,28 +122,28 @@
               </label>
 
               <label class="checkbox">
-                <input class="checkbox__btn-hide" type="checkbox">
+                <input class="checkbox__btn-hide" type="checkbox" value="pantry">
                 <span class="checkbox__btn">Есть кладовые</span>
               </label>
 
               <label class="checkbox">
-                <input class="checkbox__btn-hide" type="checkbox">
+                <input class="checkbox__btn-hide" type="checkbox" value="floor">
                 <span class="checkbox__btn">Малоэтажный</span>
               </label>
 
               <label class="checkbox checkbox__hidden" style="display: none;">
-                <input class="checkbox__btn-hide" type="checkbox">
+                <input class="checkbox__btn-hide" type="checkbox" value="studio">
                 <span class="checkbox__btn">Студия</span>
               </label>
 
               <label class="checkbox checkbox__hidden" style="display: none;">
-                <input class="checkbox__btn-hide" type="checkbox">
+                <input class="checkbox__btn-hide" type="checkbox" value="river">
                 <span class="checkbox__btn">Вид на Волгу</span>
               </label>
 
               <label class="checkbox checkbox__hidden" style="display: none;">
-                <input class="checkbox__btn-hide" type="checkbox">
-                <span class="checkbox__btn">Черновая</span>
+                <input class="checkbox__btn-hide" type="checkbox" value="repair">
+                <span class="checkbox__btn">С ремонтом</span>
               </label>
 
               <button class="checkbox__btn-more" type="button">Показать ещё</button>
@@ -154,9 +154,9 @@
           <div class="widget">
             <div class="widget__body">
 
-              <label class="services">
-                <input class="services__btn-hide" type="checkbox">
-                <span class="services__btn-toggle">Услуги 0%</span>
+              <label class="credit">
+                <input class="credit__btn-hide" type="checkbox" checked>
+                <span class="credit__btn-toggle">Рассрочка</span>
               </label>
 
             </div>
@@ -173,6 +173,18 @@
 
       </aside>
 
+      <div class="modal">
+        <div class="overlay"></div>
+        <div class="modal__content">
+          <button type="button" class="modal__close-btn">
+            <img src="./images/icons/x.svg" alt="close">
+          </button>
+          <div class="modal__image">
+          </div>
+          <div class="modal__info">
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

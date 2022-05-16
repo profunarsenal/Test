@@ -1,54 +1,159 @@
 const sidebar = document.querySelector('.sidebar');
-const locationCheckbox = document.querySelector('.location__checkbox--all');
+const checkboxLocationAllBtn = document.querySelector('.location__checkbox--all');
 const locationCheckboxes = document.querySelectorAll('.location__checkbox--distance');
-const btnWidgets = document.querySelectorAll('.widget__title');
 const form = document.querySelector('.form');
 const checkboxes = document.querySelectorAll('.checkbox__hidden');
-const btnCheckboxMore = document.querySelector('.checkbox__btn-more');
 const cardsBlock = document.querySelector('.cards');
+const modal = document.querySelector('.modal');
+const modalInfo = document.querySelector('.modal__info');
+const modalImage = document.querySelector('.modal__image');
+
+const renderModal = (id, cards) => {
+  const title = document.createElement('h4');
+  const info = document.createElement('ul');
+  const image = document.createElement('img');
+  const card = cards.find(card => card.id === id ? card : null);
+
+  title.classList.add('modal__title');
+  info.classList.add('modal__info-list');
+
+  modalImage.innerHTML = '';
+  modalInfo.innerHTML = '';
+
+  image.src = card.image;
+
+  title.innerHTML = `<span>ЖК</span> ${card.name}`;
+
+  info.innerHTML = `
+    <li class="modal__info-item">
+      <span class="modal__info-subtitle">Срок сдачи</span>
+      <span class="modal__info-value">${card.term}</span>
+    </li>
+    <li class="modal__info-item">
+      <span class="modal__info-subtitle">Метро</span>
+      <span class="modal__info-value modal__info-value--metro">${card.metro}</span>
+    </li>
+    <li class="modal__info-item">
+      <span class="modal__info-subtitle">Адрес</span>
+      <span class="modal__info-value">${card.address}</span>
+    </li>
+    <li class="modal__info-item">
+      <span class="modal__info-subtitle">Двор без машин</span>
+      <span class="modal__info-value">${card.noCar ? 'Да' : 'Нет'}</span>
+    </li>
+    <li class="modal__info-item">
+      <span class="modal__info-subtitle">Высокие потолки</span>
+      <span class="modal__info-value">${card.ceiling ? 'Да' : 'Нет'}</span>
+    </li>
+    <li class="modal__info-item">
+      <span class="modal__info-subtitle">Панорамные окна</span>
+      <span class="modal__info-value">${card.window ? 'Да' : 'Нет'}</span>
+    </li>
+    <li class="modal__info-item">
+      <span class="modal__info-subtitle">Есть кладовые</span>
+      <span class="modal__info-value">${card.pantry ? 'Да' : 'Нет'}</span>
+    </li>
+    <li class="modal__info-item">
+      <span class="modal__info-subtitle">Малоэтажный</span>
+      <span class="modal__info-value">${card.floor ? 'Да' : 'Нет'}</span>
+    </li>
+    <li class="modal__info-item">
+      <span class="modal__info-subtitle">Студия</span>
+      <span class="modal__info-value">${card.studio ? 'Да' : 'Нет'}</span>
+    </li>
+    <li class="modal__info-item">
+      <span class="modal__info-subtitle">Вид на Волгу</span>
+      <span class="modal__info-value">${card.river ? 'Да' : 'Нет'}</span>
+    </li>
+    <li class="modal__info-item">
+      <span class="modal__info-subtitle">С ремонтом</span>
+      <span class="modal__info-value">${card.repair ? 'Да' : 'Нет'}</span>
+    </li>
+   `;
+
+  modalImage.append(image);
+  modalInfo.append(title);
+  modalInfo.append(info);
+}
+
+const openModal = () => {
+  modal.classList.add('active');
+  document.body.classList.add('lock');
+}
+
+const closeModal = () => {
+  modal.classList.remove('active');
+  document.body.classList.remove('lock');
+}
+
+const hideCards = () => {
+  const cards = document.querySelectorAll('.card');
+  const btnMore = document.querySelector('.btn-more');
+
+  if (cards.length > 9) {
+    btnMore.style.display = 'flex';
+
+    cards.forEach((card, index) => {
+      if (index > 8) {
+        card.style.display = 'none';
+      }
+    })
+  } else {
+    btnMore.style.display = 'none';
+  }
+
+  btnMore.addEventListener('click', () => {
+    cards.forEach(card => {
+      if (card.style.display = 'none') {
+        card.style.display = 'block';
+        btnMore.style.display = 'none';
+      }
+    })
+  })
+}
 
 const optionsFilter = (cards) => {
   const options = Array.from(document.querySelectorAll('.checkbox__btn-hide'));
-  const optionsActive = options.filter(option => option.checked ? option : undefined);
-  const cardArray = [];
+  const optionsActive = options.filter(option => option.checked);
 
   if (optionsActive.length === 0) {
     render(cards)
   } else {
     optionsActive.forEach(option => {
-      cards.forEach(card => {
-        if (card[option.value] === true) {
-          cardArray.push(card)
-        }
-      })
+      cards = cards.filter(card => card[option.value])
     })
-    render(cardArray)
+    render(cards)
   }
 
+}
+
+const creditFilter = (cards) => {
+  const creditBtn = document.querySelector('.credit__btn-hide');
+
+  if (creditBtn.checked) {
+    cards = cards.filter(card => card.credit)
+    optionsFilter(cards);
+  } else {
+    cards = cards.filter(card => !card.credit)
+    optionsFilter(cards);
+  }
 }
 
 const radioFilter = (cards) => {
   const radioBtns = Array.from(document.querySelectorAll('.radio__btn-hide'));
-  const radioBtnActive = radioBtns.filter(radio => radio.checked ? radio : undefined);
-  const cardArray = [];
+  const radioBtnActive = radioBtns.filter(radio => radio.checked);
 
   if (radioBtnActive[0].value === 'Любая') {
-    optionsFilter(cards);
+    creditFilter(cards);
   } else {
-    cards.forEach(card => {
-      if (card.term === radioBtnActive[0].value) {
-        cardArray.push(card);
-      }
-    })
-
-    optionsFilter(cardArray);
+    cards = cards.filter(card => card.term === radioBtnActive[0].value)
+    creditFilter(cards);
   }
 }
 
-
 const filterLocation = (cards) => {
   const checkboxValues = Array.from(document.querySelectorAll('.location__checkbox'));
-  const checkboxActive = checkboxValues.filter(checkbox => checkbox.checked ? checkbox : undefined);
+  const checkboxActive = checkboxValues.filter(checkbox => checkbox.checked);
   const cardArray = [];
 
   checkboxActive.forEach(checkbox => {
@@ -61,7 +166,6 @@ const filterLocation = (cards) => {
         }
       })
 
-      console.log(cardArray)
       radioFilter(cardArray)
     }
   })
@@ -81,36 +185,48 @@ const render = (cards) => {
       const a = document.createElement('a');
       a.classList.add('card');
       a.href = '#';
+      a.dataset.id = card.id;
 
       a.innerHTML = `
       <div class="card__header">
         <div class="card__sticker card__sticker--class">Комфорт</div>
-          <div class="card__sticker card__sticker--credit">Рассрочка 12 мес.</div>
+          <div class="card__sticker card__sticker--credit" ${card.credit ? '' : 'style="display:none"'}>Рассрочка 12 мес.</div>
         </div>
         <div class="card__image">
           <img src="${card.image}" alt="">
         </div>
         <div class="card__content">
-          <h4 class="card__title">${card.name}</h4>
+          <h4 class="card__title">ЖК ${card.name}</h4>
           <div class="card__term">${card.term}</div>
           <div class="card__metro">${card.metro}</div>
           <div class="card__address">${card.address}</div>
         </div>
       `;
 
+      a.addEventListener('click', (e) => {
+        const id = e.target.closest('.card').dataset.id;
+
+        openModal();
+        renderModal(id, cards);
+
+        e.preventDefault();
+      })
+
       cardsBlock.append(a)
     })
+
+    hideCards()
   }
 
 }
 
 const getData = () => {
-  return fetch('https://api.jsonbin.io/b/627be88d25069545a3329db2/1')
+  return fetch('../db/db.json')
     .then(res => res.json())
 }
 
-locationCheckbox.addEventListener('change', () => {
-  if (locationCheckbox.checked) {
+checkboxLocationAllBtn.addEventListener('change', () => {
+  if (checkboxLocationAllBtn.checked) {
     locationCheckboxes.forEach(checkbox => {
       checkbox.checked = false;
     })
@@ -120,38 +236,19 @@ locationCheckbox.addEventListener('change', () => {
 locationCheckboxes.forEach(checkbox => {
   checkbox.addEventListener('change', () => {
     if (checkbox.checked) {
-      locationCheckbox.checked = false;
-    }
-  })
-})
-
-btnWidgets.forEach(btn => {
-  btn.addEventListener('click', () => {
-    btn.classList.toggle('widget__title--show');
-    btn.nextElementSibling.classList.toggle('widget__body--show');
-  })
-})
-
-btnCheckboxMore.addEventListener('click', () => {
-  checkboxes.forEach(checkbox => {
-    if (checkbox.style.display === 'none') {
-      checkbox.style.display = 'block';
-      btnCheckboxMore.textContent = 'Скрыть';
-    } else {
-      checkbox.style.display = 'none';
-      btnCheckboxMore.textContent = 'Показать ещё';
+      checkboxLocationAllBtn.checked = false;
     }
   })
 })
 
 form.addEventListener('reset', () => {
   form.reset();
-  getData().then(data => render(data));
+  getData().then(data => filterLocation(data));
 })
 
 form.addEventListener('submit', (e) => {
-  getData().then(data => filterLocation(data));
   e.preventDefault();
+  getData().then(data => filterLocation(data));
 })
 
 document.addEventListener('click', (e) => {
@@ -160,6 +257,27 @@ document.addEventListener('click', (e) => {
   } else if (e.target.closest('.sidebar-button--close') || !e.target.closest('.sidebar')) {
     sidebar.classList.remove('sidebar--open');
   }
+
+  if (e.target.closest('.widget__title')) {
+    e.target.classList.toggle('widget__title--show');
+    e.target.nextElementSibling.classList.toggle('widget__body--show');
+  }
+
+  if (e.target.closest('.checkbox__btn-more')) {
+    checkboxes.forEach(checkbox => {
+      if (checkbox.style.display === 'none') {
+        checkbox.style.display = 'block';
+        e.target.textContent = 'Скрыть';
+      } else {
+        checkbox.style.display = 'none';
+        e.target.textContent = 'Показать ещё';
+      }
+    })
+  }
+
+  if (e.target.closest('.modal__close-btn') || e.target.closest('.overlay')) {
+    closeModal();
+  }
 })
 
-getData().then(data => render(data))
+getData().then(data => filterLocation(data))
